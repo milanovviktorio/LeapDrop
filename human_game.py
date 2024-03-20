@@ -27,7 +27,7 @@ SPEED = 20
 
 class SnakeGame:
     
-    def __init__(self, w=640, h=480):
+    def __init__(self, w=640*2, h=480*2):
         self.w = w
         self.h = h
         # init display
@@ -119,6 +119,8 @@ class SnakeGame:
     def _move(self, direction):
         x = self.head.x
         y = self.head.y
+        
+        # Determine the new position based on the direction
         if direction == Direction.RIGHT:
             x += BLOCK_SIZE
         elif direction == Direction.LEFT:
@@ -127,9 +129,24 @@ class SnakeGame:
             y += BLOCK_SIZE
         elif direction == Direction.UP:
             y -= BLOCK_SIZE
-            
-        self.head = Point(x, y)
-            
+        
+        # Check if the new position collides with the snake's body
+        new_head = Point(x, y)
+        if new_head in self.snake[1:]:
+            # If the new position collides with the snake's body, ignore the move
+            return
+        
+        # Check if the new direction is opposite to the current direction
+        if (direction == Direction.RIGHT and self.direction == Direction.LEFT) or \
+        (direction == Direction.LEFT and self.direction == Direction.RIGHT) or \
+        (direction == Direction.DOWN and self.direction == Direction.UP) or \
+        (direction == Direction.UP and self.direction == Direction.DOWN):
+            # If the new direction is opposite to the current direction, ignore the move
+            return
+        
+        # Update the head position and direction
+        self.head = new_head
+        self.direction = direction
 
 if __name__ == '__main__':
     game = SnakeGame()
