@@ -4,7 +4,7 @@ from enum import Enum
 from collections import namedtuple
 
 pygame.init()
-font = pygame.font.Font(r'C:\Windows\Fonts\Arial.ttf', 25)
+font = pygame.font.Font('.\Assets\Daydream.ttf', 25)
 #font = pygame.font.SysFont('arial', 25)
 
 class Direction(Enum):

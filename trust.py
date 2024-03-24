@@ -5,7 +5,7 @@ from collections import namedtuple
 import numpy as np
 
 pygame.init()
-font = pygame.font.Font(r'C:\Windows\Fonts\Arial.ttf', 25)
+font = pygame.font.Font('.\Assets\Daydream.ttf', 25)
 #font = pygame.font.SysFont('arial', 25)
 
 class Direction(Enum):
